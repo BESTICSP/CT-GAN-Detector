@@ -37,6 +37,7 @@ use .csv file to record the coordinates and corresponding file name of each tamp
 | filename | x | y | z |
 |---|---|---|---|
 |inject_0000_158|176|183|158|
+|inject_0001_195|113|119|195|
 
 ### Path
 
