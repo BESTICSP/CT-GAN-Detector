@@ -43,31 +43,30 @@ use .csv file to record the coordinates and corresponding file name of each tamp
 
 Create the following folders under this project: 
 
+```
 checkpoint
-
 ml_model
-
 cv_tfrecord
-
 test_tfrecord
-
 train_tfrecord
-
 origin_tfrecord
-
 luna_slice_data
-
 npy_data
-
 npy_slice
-
 step_accuracy
+```
 
-Replace the corresponding path in generate_tfrecord_my.py, train.py and sliding_window_test_my.py with the above folder path.
+Replace the corresponding path in generate_tfrecord_my.py, train.py, sliding_window_test_my.py and svm_pca_classifier.py, with the above folder path.
 
 ### RUN
 
-Run the following files in sequence: generate_tfrecord_my.py, train.py and sliding_window_test_my.py
+Run the following files in sequence: 
+```
+generate_tfrecord_my.py
+train.py
+sliding_window_test_my.py
+svm_pca_classifier.py
+```
 
 ### E-mail
 
