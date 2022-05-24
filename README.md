@@ -70,7 +70,7 @@ svm_pca_classifier.py
 
 ### E-mail
 
-Programmer: Xuanxi Huang
+Programmer: Xuanxi Huang  Supervisor: Jianyi Zhang
 
 Email: hxxkaa@foxmail.com, zjy@besti.edu.cn
 
