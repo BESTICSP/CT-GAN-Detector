@@ -50,7 +50,6 @@ cv_tfrecord
 test_tfrecord
 train_tfrecord
 origin_tfrecord
-luna_slice_data
 npy_data
 npy_slice
 step_accuracy
