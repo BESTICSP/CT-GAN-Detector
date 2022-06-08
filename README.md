@@ -39,7 +39,7 @@ use .csv file to record the coordinates and corresponding file name of each tamp
 |inject_0000_158|176|183|158|
 |inject_0001_195|113|119|195|
 
-Replace the corresponding path in generate_tfrecord_my.py with your .csv file path.
+Replace the corresponding path in generate_tfrecord_my.py with your data path and .csv file path.
 
 ### Path
 
