@@ -87,9 +87,8 @@ def pca_keep_ratio(variance_list):
 if __name__ == '__main__':
     data_dir = r'./npy_data/'
     model_dir = r'./ml_model'
-    total_ct_log_path = r'/home/manager/hxx/PyWorkspace/GAN_small_forge_detection/step_accuracy/sw_test_total.txt'
-    # total_ct_log_path = r'/home/C00472576/lucas/PyWorkspace/GAN_small_forge_detection/step_accuracy/sw_test_total.txt'
-    # total_ct_log_path = r'/home/manager/hxx/PyWorkspace/GAN_small_forge_detection/step_accuracy/segment_test_log.txt'
+    total_ct_log_path = r'./step_accuracy/sw_test_total.txt'
+
     start_time = time.time()
     print('loading data...')
     file_list = os.listdir(data_dir)
@@ -98,13 +97,11 @@ if __name__ == '__main__':
     data_list = []
     for file_name in file_list:
         gt_list.append(get_label(file_name))
-        # data_list.append(np.load(data_dir + file_name).flatten()) # f1=0.845
         img = np.load(data_dir + file_name)
 
         # GLCM
         threshold = 100
         img = img * (threshold - 1)
-        np.round()
         img = np.uint8(img)
         img = feature.texture.greycomatrix(img, [1], [0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],levels=threshold)[:, :, 0, :]
 
@@ -119,19 +116,20 @@ if __name__ == '__main__':
     print('data have load. cost %.3f s' % (end_time - start_time))
 
     random_state = 0
+    train_x, test_x, train_y, test_y = train_test_split(data_list, gt_list, test_size=0.2, stratify=gt_list, random_state=random_state)
+
     # pca
     start_time = end_time
     print('training PCA...')
     pca = PCA(n_components=256, svd_solver='randomized', whiten=True, random_state=random_state)
-    pca.fit(data_list)
-    data_list_trans = pca.transform(data_list)
+    pca.fit(train_x)
+    train_x_pca = pca.transform(train_x)
+    test_x_pca = pca.transform(test_x)
     end_time = time.time()
     print('PCA done. cost %.3f s' % (end_time - start_time))
     keep = pca_keep_ratio(pca.explained_variance_ratio_)
     pca_log = '\nPCA info: n_components='+str(pca.n_components_)+'; keep_ratio='+str(keep)
     print(pca_log)
-
-    train_x, test_x, train_y, test_y = train_test_split(data_list_trans, gt_list, test_size=0.2, stratify=gt_list, random_state=random_state)
 
     # svm
     start_time = end_time
@@ -143,10 +141,8 @@ if __name__ == '__main__':
     }
 
     clf = GridSearchCV(SVC(kernel='rbf', class_weight='balanced'), param_grid)
-    # rf = RandomForestClassifier()
-    # clf = GridSearchCV(rf, param_grid)
 
-    clf = clf.fit(train_x, train_y)
+    clf = clf.fit(train_x_pca, train_y)
     print("Best estimator found by grid search:")
     print('epoch 1:', clf.best_params_)
 
@@ -154,10 +150,10 @@ if __name__ == '__main__':
     param_grid['C'] = new_parameters_list(clf.best_params_['C'])
     param_grid['gamma'] = new_parameters_list(clf.best_params_['gamma'])
     clf = GridSearchCV(SVC(kernel='rbf', class_weight='balanced'), param_grid)
-    clf = clf.fit(train_x, train_y)
+    clf = clf.fit(train_x_pca, train_y)
     print('epoch 2:', clf.best_params_)
 
-    y_predict = clf.predict(test_x)
+    y_predict = clf.predict(test_x_pca)
     end_time = time.time()
     print('SVM training done! cost %.3f s' % (end_time - start_time))
 
