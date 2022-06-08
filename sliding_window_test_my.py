@@ -139,10 +139,10 @@ def show_prediction_false(dcm_filename, windows_num, coord, predictions_list, la
 
 if __name__ == '__main__':
     result_dict = {'TP': 0, 'TN': 0, 'FP': 0, 'FN': 0}
-    tfrecord_dir = r'/home/manager/hxx/PyWorkspace/GAN_small_forge_detection/test_tfrecord'
+    tfrecord_dir = r'./test_tfrecord'
     checkpointDir = r'./checkpoint'
-    total_ct_log_path = r'/home/manager/hxx/PyWorkspace/GAN_small_forge_detection/step_accuracy/sw_test_total.txt'
-    filename_log_path = r'/home/manager/hxx/PyWorkspace/GAN_small_forge_detection/step_accuracy/test_filename_log.txt'
+    total_ct_log_path = r'./step_accuracy/sw_test_total.txt'
+    filename_log_path = r'./step_accuracy/test_filename_log.txt'
     train_detail_str = '\n===== new log =====\n'
 
     num_class = 2
