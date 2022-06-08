@@ -39,6 +39,8 @@ use .csv file to record the coordinates and corresponding file name of each tamp
 |inject_0000_158|176|183|158|
 |inject_0001_195|113|119|195|
 
+Replace the corresponding path in generate_tfrecord_my.py with your .csv file path.
+
 ### Path
 
 Create the following folders under this project: 
@@ -55,7 +57,8 @@ npy_slice
 step_accuracy
 ```
 
-Replace the corresponding path in generate_tfrecord_my.py, train.py, sliding_window_test_my.py and svm_pca_classifier.py, with the above folder path.
+Replace the corresponding path in generate_tfrecord_my.py with the above folder path.
+(They may require a lot of storage space, if you want to save this data in other path, please replace the path in generate_tfrecord_my.py, train.py, sliding_window_test_my.py, svm_pca_classifier.py)
 
 ### RUN
 
