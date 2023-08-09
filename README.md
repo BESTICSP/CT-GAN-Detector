@@ -70,12 +70,18 @@ sliding_window_test_my.py
 svm_pca_classifier.py
 ```
 
+### Reviewer Comments
+PLOS ONE
+Reviewer #1: This paper has successfully proposed a novel two-stage cascade framework based on a local detection network and a global classification method that can detect GAN-based small region forgery attacks in medical images....Sufficient experiments show that this method can achieve excellent
+performance than the state-of-the-art detection methods... The authors have done good work. It will add new knowledge and new areas of research to the subject area compared with other published material.
+Reviewer #2:Experiments show that the proposed method can obtain better results.
+
 ### E-mail
 
 Programmer: Xuanxi Huang, Supervisor: Jianyi Zhang
 
-Email: hxxkaa@foxmail.com, zjy@besti.edu.cn
+Email: zjy@besti.edu.cn
 
-Under review
+Accept by PLOS ONE
 
 北京电子科技学院CSP实验室
